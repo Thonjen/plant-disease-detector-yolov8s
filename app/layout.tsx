@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import CursorEffect from "./component/CursorEffect";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Plant Disease Detector | AI-Powered Plant Health Analysis",
-  description: "Revolutionary AI-powered plant disease detection using Popular technology YOLOv8s models. Detect diseases in crops and rice with exceptional accuracy - all processed directly in your browser. Privacy-first, real-time analysis with instant results.",
+  description: "Unreliable AI-powered plant disease detection using Popular technology YOLOv8s models. Detect diseases in crops and rice with exceptional accuracy - all processed directly in your browser. Privacy-first, real-time analysis with instant results.",
   keywords: "plant disease detection, AI agriculture, YOLOv8s, crop health, rice disease, plant pathology, agricultural technology, computer vision, machine learning",
   authors: [{ name: "Plant Disease Detector Team" }],
   creator: "Plant Disease Detector",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Plant Disease Detector | AI-Powered Plant Health Analysis",
-    description: "Revolutionary AI-powered plant disease detection using Popular technology YOLOv8s models. Privacy-first, real-time analysis with instant results.",
+    description: "Unreliable AI-powered plant disease detection using Popular technology YOLOv8s models. Privacy-first, real-time analysis with instant results.",
     type: "website",
     locale: "en_US",
     siteName: "Plant Disease Detector",
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Plant Disease Detector | AI-Powered Plant Health Analysis",
-    description: "Revolutionary AI-powered plant disease detection using Popular technology YOLOv8s models.",
+    description: "Unreliable AI-powered plant disease detection using Popular technology YOLOv8s models.",
   },
   robots: {
     index: true,
@@ -109,6 +110,9 @@ export default function RootLayout({
             }}
           ></div>
         </div>
+        
+        {/* Cursor effect */}
+        <CursorEffect />
         
         {/* Main content */}
         <div className="relative z-10">

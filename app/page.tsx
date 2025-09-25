@@ -18,7 +18,7 @@ export default function Home() {
             <span className="block">Detector</span>
           </h1>
           <p className="text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
-            Revolutionary{" "}
+            Unreliable{" "}
             <span className="font-bold text-transparent bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text">AI-powered</span>{" "}
             plant disease detection using Popular{" "}
             <span className="font-semibold text-green-700 bg-green-100 px-2 py-1 rounded-lg">YOLOv8s</span>{" "}
@@ -133,10 +133,10 @@ export default function Home() {
                   Contact Support
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  Need help or have questions? We’re here to assist
+                  Need help or have questions? We’re here to assist. I know its not the same as the other two
                 </p>
                 <a
-                  href="https://github.com/Thonjen/plant-disease-detector-yolov8s/issues"
+                  href="https://imgflip.com/i/62yy6q"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-purple-700 hover:text-purple-900 text-sm font-medium"

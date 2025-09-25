@@ -6,11 +6,10 @@ import * as tf from '@tensorflow/tfjs';
 
 // Disease labels for different models
 const DISEASE_LABELS = {
-  plant: ['Brown spot', 'Leaf Blight', 'Leaf Scald', 'Leaf blast', 'Narrow brown spot', 'healthy'],
+     plant: ['Brown spot', 'Leaf Blight', 'Leaf Scald', 'Leaf blast', 'Narrow brown spot', 'healthy'],
   rice: ['Brown spot', 'Leaf Blight', 'Leaf Scald', 'Leaf blast', 'Narrow brown spot', 'healthy'] // Same classes as plant model since both use YOLO
 };
 
-// Configuration constants for model inference
 const MODEL_CONFIG = {
   CONFIDENCE_THRESHOLD: 0.4,      // Primary confidence threshold
   HIGH_CONFIDENCE_THRESHOLD: 0.75, // High confidence threshold for reliable results
@@ -780,7 +779,7 @@ export default function LeafDetector() {
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">AI Model Selection</h2>
               </div>
-              <p className="text-gray-600 text-lg">Choose your specialized detection model for optimal results</p>
+              <p className="text-gray-600 text-lg">Choose your specialized detection model for suboptimal results</p>
             </div>
             <div className="flex bg-white/80 backdrop-blur-sm rounded-2xl p-2 shadow-lg border border-white/50">
               <button
