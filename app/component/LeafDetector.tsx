@@ -1151,6 +1151,10 @@ export default function LeafDetector() {
               <p className="text-sm text-amber-800 leading-relaxed">
                 <strong className="font-semibold">Important Notice:</strong> AI predictions serve as guidance only. Always consult agricultural experts or professionals for critical plant health decisions.
               </p>
+              <p className="text-sm text-amber-800 leading-relaxed">
+                <strong className="font-semibold">SCROLL DOWN IF YOU WANT AN ACCURATE PLANT HEALTH CHECKER USING AI T_T</strong>
+
+              </p>
             </div>
           </div>
 

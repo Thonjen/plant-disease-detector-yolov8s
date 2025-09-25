@@ -1,4 +1,5 @@
 import LeafDetector from "./component/LeafDetector";
+import PlantHealthChecker from "./component/PlantHealthChecker";
 
 export default function Home() {
   return (
@@ -12,9 +13,14 @@ export default function Home() {
             </div>
             <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
           </div>
-          <h1 className="text-6xl lg:text-7xl font-black bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent mb-6 leading-tight">
-            Plant Disease
-            <br className="hidden sm:block" />
+          <h1 className="text-5xl lg:text-6xl font-black bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent mb-6 leading-tight">
+            <span className="flex items-center justify-center gap-3 flex-wrap">
+              Plant Disease 🌿
+              <span className="text-3xl">•</span>
+              Rice Disease 🌾
+              <span className="text-3xl">•</span>
+              AI Plant Health 🤖
+            </span>
             <span className="block">Detector</span>
           </h1>
           <p className="text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -22,7 +28,9 @@ export default function Home() {
             <span className="font-bold text-transparent bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text">AI-powered</span>{" "}
             plant disease detection using Popular{" "}
             <span className="font-semibold text-green-700 bg-green-100 px-2 py-1 rounded-lg">YOLOv8s</span>{" "}
-            models. Detect diseases in crops and rice with exceptional accuracy — all processed{" "}
+            models and{" "}
+            <span className="font-semibold text-emerald-700 bg-emerald-100 px-2 py-1 rounded-lg">Google Gemini AI</span>. 
+            Detect diseases in crops and rice with exceptional accuracy — all processed{" "}
             <span className="underline decoration-green-500 decoration-2">directly in your browser</span>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
@@ -43,13 +51,33 @@ export default function Home() {
         </header>
 
         {/* Main */}
-        <main className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-green-600/5 to-emerald-600/5 rounded-3xl blur-3xl"></div>
-          <div className="relative bg-white/90 backdrop-blur-xl shadow-2xl rounded-3xl p-8 lg:p-12 max-w-5xl mx-auto mb-20 border border-white/20 shadow-green-500/10">
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+        <main className="relative space-y-20">
+          {/* Disease Detection Section */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-600/5 to-emerald-600/5 rounded-3xl blur-3xl"></div>
+            <div className="relative bg-white/90 backdrop-blur-xl shadow-2xl rounded-3xl p-8 lg:p-12 max-w-5xl mx-auto border border-white/20 shadow-green-500/10">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+              </div>
+              <LeafDetector />
             </div>
-            <LeafDetector />
+          </div>
+
+                  <p className="text-center">
+           <strong className="font-semibold">Took like 5 minutes to code this part :(</strong>
+          </p>
+          <p className="text-center">
+           <strong className="font-semibold">Wasted 16 hours for training models for just this to beat me</strong>
+          </p>
+          {/* AI Health Checker Section */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/5 to-teal-600/5 rounded-3xl blur-3xl"></div>
+            <div className="relative bg-white/90 backdrop-blur-xl shadow-2xl rounded-3xl p-8 lg:p-12 max-w-5xl mx-auto border border-white/20 shadow-emerald-500/10">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"></div>
+              </div>
+              <PlantHealthChecker />
+            </div>
           </div>
         </main>
 
