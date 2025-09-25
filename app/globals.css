@@ -1,26 +1,284 @@
 @import "tailwindcss";
 
+@theme {
+  --font-family-sans: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: var(--font-geist-mono), monospace;
+  
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-primary: #059669;
+  --color-primary-dark: #047857;
+  --color-secondary: #f3f4f6;
+  --color-accent: #10b981;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s infinite;
+  --animate-gradient: gradient-shift 4s ease infinite;
+  --animate-bounce-slow: bounce-slow 2s ease-in-out infinite;
+  
+  --backdrop-blur-xs: 2px;
+  
+  --shadow-primary: 0 10px 25px -5px rgba(5, 150, 105, 0.1), 0 4px 10px -2px rgba(5, 150, 105, 0.05);
+  --shadow-secondary: 0 20px 35px -5px rgba(0, 0, 0, 0.1), 0 10px 25px -5px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(5, 150, 105, 0.3);
+  --shadow-glow-lg: 0 0 40px rgba(5, 150, 105, 0.2);
+  
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #059669;
+  --primary-dark: #047857;
+  --secondary: #f3f4f6;
+  --accent: #10b981;
+  --gradient-primary: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  --gradient-secondary: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  --shadow-primary: 0 10px 25px -5px rgba(5, 150, 105, 0.1), 0 4px 10px -2px rgba(5, 150, 105, 0.05);
+  --shadow-secondary: 0 20px 35px -5px rgba(0, 0, 0, 0.1), 0 10px 25px -5px rgba(0, 0, 0, 0.04);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+body {
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px);
+  }
+  50% { 
+    transform: translateY(-15px);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes pulse-slow {
+  0%, 100% { 
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% { 
+    background-position: -200% 0; 
+  }
+  100% { 
+    background-position: 200% 0; 
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { 
+    background-position: 0% 50%; 
+  }
+  50% { 
+    background-position: 100% 50%; 
+  }
+}
+
+/* Utility classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Glass morphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #059669, #10b981);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #047857, #059669);
+}
+
+/* Enhanced focus styles */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1), 0 0 0 1px rgba(5, 150, 105, 0.3);
+}
+
+/* PWA specific styles */
+@media (display-mode: standalone) {
+  body {
+    /* Add padding for status bar on mobile PWA */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in animation for detection results */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Image upload hover effects */
+.upload-area:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+label:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Bounding box animations */
+.bbox {
+  animation: fadeIn 0.5s ease-out;
+  transition: all 0.2s ease;
+}
+
+.bbox:hover {
+  transform: scale(1.02);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --primary: #0000ff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

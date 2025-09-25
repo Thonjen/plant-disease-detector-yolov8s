@@ -1,23 +1,47 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
+  "name": "plant-disease-detector-pwa",
+  "version": "1.0.0",
+  "description": "AI-powered Progressive Web App for detecting plant diseases using YOLOv8s and ONNX Runtime",
+  "keywords": [
+    "plant-disease",
+    "yolo",
+    "onnx",
+    "pwa",
+    "nextjs",
+    "ai",
+    "agriculture"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "homepage": "https://your-app.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/plant-disease-detector-yolov8s.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start"
+    "build": "next build",
+    "start": "next start",
+    "setup": "node setup-check.js",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-backend-webgl": "^4.22.0",
+    "next": "15.5.4",
+    "next-pwa": "^5.6.0",
+    "onnxruntime-web": "^1.22.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.4"
+    "tailwindcss": "^4.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "typescript": "^5"
   }
 }

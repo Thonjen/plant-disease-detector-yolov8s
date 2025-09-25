@@ -1,103 +1,199 @@
-import Image from "next/image";
+import LeafDetector from "./component/LeafDetector";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen text-gray-800">
+      <div className="container mx-auto px-4 py-8 lg:py-12">
+        {/* Header */}
+        <header className="text-center mb-20">
+          <div className="relative mb-8">
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-green-600 to-emerald-600 text-white rounded-3xl shadow-2xl mb-6 animate-bounce-slow">
+              <span className="text-4xl drop-shadow-sm">🌿</span>
+            </div>
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
+          </div>
+          <h1 className="text-6xl lg:text-7xl font-black bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent mb-6 leading-tight">
+            Plant Disease
+            <br className="hidden sm:block" />
+            <span className="block">Detector</span>
+          </h1>
+          <p className="text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
+            Revolutionary{" "}
+            <span className="font-bold text-transparent bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text">AI-powered</span>{" "}
+            plant disease detection using Popular{" "}
+            <span className="font-semibold text-green-700 bg-green-100 px-2 py-1 rounded-lg">YOLOv8s</span>{" "}
+            models. Detect diseases in crops and rice with exceptional accuracy — all processed{" "}
+            <span className="underline decoration-green-500 decoration-2">directly in your browser</span>.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full text-sm font-medium text-green-700 shadow-lg border border-green-200">
+              <span className="text-lg">🔒</span>
+              <span>Privacy-first: All processing happens locally</span>
+            </div>
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full text-sm font-medium text-blue-700 shadow-lg border border-blue-200">
+              <span className="text-lg">⚡</span>
+              <span>Real-time analysis with instant results</span>
+            </div>
+          </div>
+          <div className="flex justify-center gap-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse delay-100"></div>
+            <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse delay-200"></div>
+          </div>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {/* Main */}
+        <main className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-green-600/5 to-emerald-600/5 rounded-3xl blur-3xl"></div>
+          <div className="relative bg-white/90 backdrop-blur-xl shadow-2xl rounded-3xl p-8 lg:p-12 max-w-5xl mx-auto mb-20 border border-white/20 shadow-green-500/10">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
+            </div>
+            <LeafDetector />
+          </div>
+        </main>
+
+        {/* Footer */}
+        <footer className="relative pt-16">
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-green-50/30 to-transparent"></div>
+          <div className="relative max-w-6xl mx-auto">
+            {/* Footer Links */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="group text-center p-8 rounded-2xl bg-white/80 backdrop-blur-sm hover:bg-white hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 border border-green-100/50 hover:border-green-200">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  📚
+                </div>
+                <h3 className="font-bold text-gray-900 mb-4 text-xl group-hover:text-green-700 transition-colors">
+                  Documentation
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Comprehensive guides and tutorials to help you get the most out of our plant disease detection system
+                </p>
+                <a
+                  href="https://github.com/Thonjen/plant-disease-detector-yolov8s/wiki"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-green-700 hover:text-green-900 text-sm font-medium"
+                >
+                  <span>View Docs</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <div className="group text-center p-8 rounded-2xl bg-white/80 backdrop-blur-sm hover:bg-white hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 border border-blue-100/50 hover:border-blue-200">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  💻
+                </div>
+                <h3 className="font-bold text-gray-900 mb-4 text-xl group-hover:text-blue-700 transition-colors">
+                  GitHub Repository
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Explore the source code, contribute to the project, and collaborate with the community
+                </p>
+                <a
+                  href="https://github.com/Thonjen/plant-disease-detector-yolov8s"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-blue-700 hover:text-blue-900 text-sm font-medium"
+                >
+                  <span>View on GitHub</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+<div className="group text-center p-8 rounded-2xl bg-white/80 backdrop-blur-sm hover:bg-white hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 border border-purple-100/50 hover:border-purple-200">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  📧
+                </div>
+                <h3 className="font-bold text-gray-900 mb-4 text-xl group-hover:text-purple-700 transition-colors">
+                  Contact Support
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Need help or have questions? We’re here to assist
+                </p>
+                <a
+                  href="https://github.com/Thonjen/plant-disease-detector-yolov8s/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-purple-700 hover:text-purple-900 text-sm font-medium"
+                >
+                  <span>Get Support</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Tech Stack */}
+            <div className="text-center pb-12">
+              <div className="mb-12">
+                <h4 className="text-lg font-semibold text-gray-700 mb-6">Powered by Popular technology</h4>
+                <div className="flex flex-wrap justify-center items-center gap-4">
+                  <div className="flex items-center gap-3 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-green-200/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                    <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full animate-pulse-slow"></div>
+                    <span className="text-sm font-medium text-gray-700">YOLOv8s</span>
+                  </div>
+                  <div className="flex items-center gap-3 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-blue-200/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                    <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                    <span className="text-sm font-medium text-gray-700">ONNX Runtime</span>
+                  </div>
+                  <div className="flex items-center gap-3 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-purple-200/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                    <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+                    <span className="text-sm font-medium text-gray-700">Next.js</span>
+                  </div>
+                  <div className="flex items-center gap-3 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-teal-200/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105">
+                    <div className="w-3 h-3 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full animate-pulse" style={{animationDelay: '1.5s'}}></div>
+                    <span className="text-sm font-medium text-gray-700">Tailwind CSS v4</span>
+                  </div>
+                </div>
+              </div>
+              <div className="border-t border-gray-200/50 pt-8">
+                <p className="text-sm text-gray-500 mb-2">
+                  © 2025 Plant Disease Detector
+                </p>
+                <p className="text-xs text-gray-400">
+                  Built with ❤️ for agricultural professionals and enthusiasts worldwide
+                </p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }
