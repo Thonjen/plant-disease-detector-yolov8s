@@ -3,11 +3,13 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import * as ort from 'onnxruntime-web';
 import * as tf from '@tensorflow/tfjs';
+import PlantHealthChecker from './PlantHealthChecker';
 
 // Disease labels for different models
 const DISEASE_LABELS = {
      plant: ['Brown spot', 'Leaf Blight', 'Leaf Scald', 'Leaf blast', 'Narrow brown spot', 'healthy'],
-  rice: ['Brown spot', 'Leaf Blight', 'Leaf Scald', 'Leaf blast', 'Narrow brown spot', 'healthy'] // Same classes as plant model since both use YOLO
+  rice: ['Brown spot', 'Leaf Blight', 'Leaf Scald', 'Leaf blast', 'Narrow brown spot', 'healthy'], // Same classes as plant model since both use YOLO
+  gemini: [] // Gemini doesn't use predefined labels
 };
 
 const MODEL_CONFIG = {
@@ -32,6 +34,11 @@ const MODEL_TYPES = {
     type: 'onnx',
     inputSize: MODEL_CONFIG.INPUT_SIZE, // YOLO input size
     path: '/Models/RiceModel/best.onnx'
+  },
+  gemini: {
+    type: 'gemini',
+    inputSize: 0,
+    path: ''
   }
 };
 
@@ -71,6 +78,12 @@ const DATASET_INFO = {
     trainSet: { percentage: 80, count: 2997 },
     validSet: { percentage: 13, count: 489 },
     testSet: { percentage: 7, count: 247 }
+  },
+  gemini: {
+    name: 'Gemini AI Model',
+    trainSet: { percentage: 0, count: 0 },
+    validSet: { percentage: 0, count: 0 },
+    testSet: { percentage: 0, count: 0 }
   }
 };
 
@@ -84,7 +97,7 @@ export default function LeafDetector() {
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
   const [processingStatus, setProcessingStatus] = useState<string>('');
   const [uncertainResults, setUncertainResults] = useState<ConsolidatedResult[]>([]);
-  const [currentModel, setCurrentModel] = useState<'plant' | 'rice'>('plant');
+  const [currentModel, setCurrentModel] = useState<'plant' | 'rice' | 'gemini'>('plant');
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -92,8 +105,12 @@ export default function LeafDetector() {
   const tfModelRef = useRef<tf.GraphModel | null>(null);
 
   // Load model (ONNX or Keras based on model type)
-  const loadModel = useCallback(async (modelType?: 'plant' | 'rice') => {
+  const loadModel = useCallback(async (modelType?: 'plant' | 'rice' | 'gemini') => {
     const targetModel = modelType || currentModel;
+    if (targetModel === 'gemini') {
+      setModelLoaded(true);
+      return;
+    }
     try {
       setLoading(true);
       setError('');
@@ -357,7 +374,7 @@ export default function LeafDetector() {
   };
 
   // Parse YOLO model output
-  const parseOutput = (output: any, originalWidth: number, originalHeight: number, imageDisplayWidth: number, imageDisplayHeight: number, modelType: 'plant' | 'rice'): BoundingBox[] => {
+  const parseOutput = (output: any, originalWidth: number, originalHeight: number, imageDisplayWidth: number, imageDisplayHeight: number, modelType: 'plant' | 'rice' | 'gemini'): BoundingBox[] => {
     const detections = [];
     
     // Get output data - try common output names
@@ -718,7 +735,7 @@ export default function LeafDetector() {
   };
 
   // Handle model switch
-  const handleModelSwitch = async (modelType: 'plant' | 'rice') => {
+  const handleModelSwitch = async (modelType: 'plant' | 'rice' | 'gemini') => {
     if (modelType !== currentModel && !loading) {
       setCurrentModel(modelType);
       setBoxes([]);
@@ -804,10 +821,22 @@ export default function LeafDetector() {
                 <span className="text-lg">🌾</span>
                 <span>Rice Disease</span>
               </button>
+              <button
+                onClick={() => handleModelSwitch('gemini')}
+                className={`px-6 py-4 rounded-xl font-semibold transition-all duration-300 text-sm flex items-center gap-3 ${
+                  currentModel === 'gemini'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg transform scale-105'
+                    : 'text-gray-700 hover:bg-white/80 hover:shadow-md'
+                }`}
+              >
+                <span className="text-lg">🤖</span>
+                <span>AI Health Check</span>
+              </button>
             </div>
           </div>
 
                     {/* Dataset Information */}
+          {currentModel !== 'gemini' && (
           <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-200/50 shadow-inner">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
@@ -847,7 +876,22 @@ export default function LeafDetector() {
               </div>
             </div>
           </div>
+          )}
+        </div>
+      </div>
+
+      {/* Gemini AI Health Checker */}
+      {currentModel === 'gemini' && (
+        <div className="relative overflow-hidden bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/30 rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm">
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/5 to-teal-600/5"></div>
+          <div className="relative p-8">
+            <PlantHealthChecker />
+          </div>
+        </div>
+      )}
+
       {/* Image Upload Section */}
+      {currentModel !== 'gemini' && (
       <div className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50/20 to-indigo-50/20 rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/3 to-indigo-600/3"></div>
         <div className="relative p-8">
@@ -1138,9 +1182,6 @@ export default function LeafDetector() {
 
           {/* Hidden canvas for image preprocessing */}
           <canvas ref={canvasRef} className="hidden" />
-        </div>
-      </div>
-
 
           {/* Accuracy Disclaimer */}
           <div className="mt-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/50 rounded-xl shadow-sm">
@@ -1151,17 +1192,11 @@ export default function LeafDetector() {
               <p className="text-sm text-amber-800 leading-relaxed">
                 <strong className="font-semibold">Important Notice:</strong> AI predictions serve as guidance only. Always consult agricultural experts or professionals for critical plant health decisions.
               </p>
-              <p className="text-sm text-amber-800 leading-relaxed">
-                <strong className="font-semibold">SCROLL DOWN IF YOU WANT AN ACCURATE PLANT HEALTH CHECKER USING AI T_T</strong>
-
-              </p>
             </div>
           </div>
-
-
         </div>
       </div>
-
+      )}
 
     </div>
   );

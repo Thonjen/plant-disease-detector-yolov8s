@@ -149,21 +149,16 @@ Please respond in this exact JSON format:
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
-      <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 text-white">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <span className="text-3xl">🤖</span>
-            <h2 className="text-2xl font-bold">AI Plant Health Checker</h2>
+    <div className="w-full max-w-4xl mx-auto">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Gemini AI Plant Health Analysis</h2>
           </div>
-          <p className="text-center text-emerald-100">
-            Upload a plant image and let Gemini AI determine if it's healthy or diseased
-          </p>
-
+          <p className="text-gray-600 text-lg">Upload a plant image and let Gemini AI determine if it's healthy or diseased</p>
         </div>
 
-        <div className="p-6">
+        <div>
           {/* Upload Section */}
           {!selectedImage && (
             <div className="text-center">
@@ -297,7 +292,6 @@ Please respond in this exact JSON format:
             </div>
           )}
         </div>
-      </div>
     </div>
   );
 }
